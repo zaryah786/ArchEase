@@ -1,0 +1,89 @@
+/* Simple, clear heading styles with black color */
+.page-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: floatUp 0.8s ease-out forwards;
+  filter: none;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: floatUp 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+  filter: none;
+}
+
+/* Ensure headings in all sections are visible */
+.about-section .section-title,
+.mission-section .section-title,
+.vision-section .section-title,
+.products-section .section-title,
+.contact-section .section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #000000;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: floatUp 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  filter: none;
+}
+
+/* Scroll float animation */
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add floating animation on scroll */
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Remove any animations or effects that might hide headings */
+h1, h2, h3, h4, h5, h6 {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  transform: none !important;
+}
+
+/* Responsive heading sizes */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}

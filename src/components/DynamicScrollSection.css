@@ -1,0 +1,59 @@
+/* Dynamic scroll section styles */
+.dynamic-scroll-section {
+  position: relative;
+  will-change: contents;
+}
+
+.dynamic-content {
+  position: relative;
+}
+
+/* Ensure smooth transitions for all children */
+.dynamic-content h2,
+.dynamic-content h3,
+.dynamic-content h4,
+.dynamic-content p,
+.dynamic-content .description,
+.dynamic-content .text {
+  transition: none; /* Disable CSS transitions for smoother JS animations */
+  transform-origin: center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Initial state for elements */
+.dynamic-content h2,
+.dynamic-content h3,
+.dynamic-content h4 {
+  color: #000000 !important;
+  font-weight: 600;
+}
+
+.dynamic-content p,
+.dynamic-content .description,
+.dynamic-content .text {
+  color: #333333 !important;
+}
+
+/* Ensure text remains readable */
+.dynamic-scroll-section * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent layout shift */
+.dynamic-scroll-section {
+  transform: translateZ(0);
+}
+
+/* Add slight parallax effect to different elements */
+.dynamic-content > *:nth-child(odd) {
+  transform-origin: left center;
+}
+
+.dynamic-content > *:nth-child(even) {
+  transform-origin: right center;
+}

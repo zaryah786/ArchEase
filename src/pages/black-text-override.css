@@ -1,0 +1,37 @@
+/* Override all text colors to black for better readability */
+h3, h4, h5, h6 {
+  color: #000000 !important;
+}
+
+.team-subtitle,
+.team-description,
+.services-subtitle,
+.process-subtitle,
+.impact-subtitle,
+.contact-subtitle,
+.about-description,
+.mission-description,
+.vision-description,
+.member-name,
+.member-description,
+.service-title,
+.service-description,
+.step-title,
+.step-description,
+.stat-label,
+.stat-description {
+  color: #333333 !important;
+}
+
+/* Gallery panel headings should remain visible */
+.gallery-panel h4 {
+  color: #ffffff !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Footer headings can remain white */
+.footer-section h3,
+.footer-section h4 {
+  color: #ffffff !important;
+}

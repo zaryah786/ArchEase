@@ -1,0 +1,57 @@
+/* Process Section Wrapper */
+.process-section-wrapper {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 40px 0 20px;
+}
+
+.process-header {
+  text-align: center;
+  padding: 0 2rem 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.process-header .process-main-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #FF1744 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  filter: none !important;
+  line-height: 1.2;
+}
+
+.process-header .process-subtitle {
+  font-size: 1.2rem;
+  color: #666666;
+  font-weight: 400;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* Process ScrollStack specific */
+.process-scroll-stack {
+  /* Custom styles for the process scroll stack if needed */
+}
+
+/* Process card styles are in ScrollStack.css */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .process-header .process-main-title {
+    font-size: 2rem;
+  }
+
+  .process-header .process-subtitle {
+    font-size: 1rem;
+  }
+
+  .process-header {
+    padding: 0 1rem 40px;
+  }
+}

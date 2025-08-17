@@ -1,0 +1,35 @@
+/* Fix for HomePage text blur issues */
+.hero-section *,
+.about-section *,
+.mission-section *,
+.vision-section *,
+.products-section *,
+.contact-section * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Preserve backdrop-filter for glass morphism effects on containers */
+.feature-card,
+.service-card,
+.benefit-card,
+.team-member,
+.stat-bubble,
+.metric-card,
+.testimonial-card,
+.info-card {
+  /* Keep backdrop-filter for glass effect */
+}
+
+/* But ensure text inside these containers is clear */
+.feature-card *,
+.service-card *,
+.benefit-card *,
+.team-member *,
+.stat-bubble *,
+.metric-card *,
+.testimonial-card *,
+.info-card * {
+  filter: none !important;
+  -webkit-filter: none !important;
+}

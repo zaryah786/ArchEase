@@ -1,0 +1,156 @@
+.scroll-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.scroll-text.text-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Service description specific styles */
+.scroll-text.service-description {
+  font-size: 1.1rem;
+  color: #aaaaaa;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Service feature item styles */
+.scroll-text.feature-item {
+  padding: 10px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #cccccc;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.scroll-text.feature-item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #ff6666;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s ease 0.2s;
+}
+
+.scroll-text.feature-item.text-visible::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Lead text styles */
+.scroll-text.lead-text {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+/* Sub text styles */
+.scroll-text.sub-text {
+  font-size: 1.5rem;
+  color: #cccccc;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+/* Detail text styles */
+.scroll-text.detail-text {
+  font-size: 1.2rem;
+  color: #999999;
+  line-height: 1.6;
+}
+
+/* Philosophy text styles */
+.scroll-text.philosophy-text {
+  color: #aaaaaa;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* Feature card text styles */
+.scroll-text.feature-card-text {
+  color: #999999;
+  line-height: 1.6;
+}
+
+/* Hero feature item styles */
+.scroll-text.hero-feature-item {
+  padding: 12px 0;
+  padding-left: 30px;
+  position: relative;
+  color: #cccccc;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.scroll-text.hero-feature-item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #ff6666;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s ease 0.2s;
+}
+
+.scroll-text.hero-feature-item.text-visible::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Service feature tag specific - override other styles */
+.scroll-text.service-feature-tag {
+  display: inline-block !important;
+  padding: 8px 16px !important;
+  background: #f5f5f5 !important;
+  border-radius: 20px !important;
+  margin: 0 5px 5px 0 !important;
+  font-size: 0.9rem !important;
+  color: #333333 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.scroll-text.service-feature-tag::before {
+  display: none !important;
+}
+
+/* Hero service description styles */
+.scroll-text.hero-service-description {
+  font-size: 1.1rem;
+  color: #aaaaaa;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Stagger animation for list items */
+.scroll-text.feature-item:nth-child(1) { transition-delay: 0.1s; }
+.scroll-text.feature-item:nth-child(2) { transition-delay: 0.2s; }
+.scroll-text.feature-item:nth-child(3) { transition-delay: 0.3s; }
+.scroll-text.feature-item:nth-child(4) { transition-delay: 0.4s; }
+
+.scroll-text.hero-feature-item:nth-child(1) { transition-delay: 0.1s; }
+.scroll-text.hero-feature-item:nth-child(2) { transition-delay: 0.2s; }
+.scroll-text.hero-feature-item:nth-child(3) { transition-delay: 0.3s; }
+
+@media (max-width: 768px) {
+  .scroll-text.lead-text {
+    font-size: 1.5rem;
+  }
+  
+  .scroll-text.sub-text {
+    font-size: 1.2rem;
+  }
+}

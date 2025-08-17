@@ -1,0 +1,188 @@
+/* Service heading animations - with gradient effect */
+.service-content .scroll-heading.service-heading,
+.service-showcase:first-child .service-content .scroll-heading.service-heading {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #FF1744 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  line-height: 1.2 !important;
+  /* Ensure animation styles are applied */
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.service-content .scroll-heading.service-heading.scroll-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Service tagline animations */
+.service-content .scroll-text.service-tagline,
+.service-showcase:first-child .service-content .scroll-text.service-tagline {
+  font-size: 1rem !important;
+  color: #666666 !important;
+  line-height: 1.5 !important;
+  margin-bottom: 1.5rem !important;
+  font-style: italic !important;
+  /* Ensure animation styles */
+  opacity: 0 !important;
+  transform: translateY(15px) !important;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.service-content .scroll-text.service-tagline.text-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Service feature tag animations */
+.service-feature-tag,
+.scroll-text.service-feature-tag {
+  display: inline-block !important;
+  padding: 0.4rem 0.9rem !important;
+  background: #f5f5f5 !important;
+  border-radius: 20px !important;
+  margin: 3px !important;
+  font-size: 0.8rem !important;
+  color: #333333 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  white-space: nowrap !important;
+}
+
+.service-feature-tag:hover,
+.scroll-text.service-feature-tag:hover {
+  background: #e0e0e0 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Animated button styles */
+.service-cta.animated-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 0.8rem 2rem;
+  background: #000000;
+  border: 2px solid #000000;
+  border-radius: 50px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-cta.animated-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.service-cta.animated-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.service-cta.animated-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: #333333;
+  border-color: #333333;
+}
+
+.service-cta.animated-button .button-arrow {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-cta.animated-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure proper spacing in service features */
+.service-features {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 20px 0 !important;
+  align-items: center !important;
+}
+
+/* Smooth scroll animations */
+.scroll-text {
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.scroll-heading {
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Fix animation timing */
+.scroll-text.service-feature-tag:nth-child(1) { 
+  animation-delay: 0.2s !important;
+}
+.scroll-text.service-feature-tag:nth-child(2) { 
+  animation-delay: 0.3s !important;
+}
+.scroll-text.service-feature-tag:nth-child(3) { 
+  animation-delay: 0.4s !important;
+}
+
+/* Ensure buttons animate smoothly */
+.service-cta.animated-button {
+  animation: buttonFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure first service showcase animations work */
+.service-showcase:first-child .scroll-heading,
+.service-showcase:first-child .scroll-text {
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.service-showcase:first-child .scroll-heading.scroll-visible,
+.service-showcase:first-child .scroll-text.text-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
