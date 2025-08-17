@@ -4,6 +4,7 @@ import ScrollAnimatedHeading from '../components/ScrollAnimatedHeading'
 import ScrollAnimatedText from '../components/ScrollAnimatedText'
 import ScrollStackProcess from '../components/ScrollStackProcess'
 import vendorNetworkImage from '../assets/vendor-network.png'
+import backgroundImage from '../Download Gradient Red Background for free.jpeg'
 import './homepage-section-headings.css'
 
 // Import animation styles last to override other styles
@@ -214,7 +215,7 @@ function HomePage() {
       {/* Global Background */}
       <div className="global-background">
         <img 
-          src="./src/Download Gradient Red Background for free.jpeg" 
+          src={backgroundImage} 
           alt="Background" 
           className="background-image"
         />
