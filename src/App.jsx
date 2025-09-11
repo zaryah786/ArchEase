@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LoadingScreen from './LoadingScreen'
 import HomePage from './pages/HomePage'
+import ProductsPage from './pages/ProductsPage'
 import './App.css'
 import './pages/black-text-override.css'
 
@@ -16,9 +18,14 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <HomePage />
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

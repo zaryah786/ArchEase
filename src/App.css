@@ -1324,6 +1324,49 @@ body.white-bg .hamburger span {
   color: #1a1a1a;
 }
 
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-button:disabled:hover {
+  background: #1a1a1a;
+  color: white;
+}
+
+/* Status Messages */
+.submit-status {
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.status-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Footer */
 .footer-section {
   background: #1a1a1a;

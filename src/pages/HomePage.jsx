@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import emailjs from '@emailjs/browser'
 import DynamicScrollSection from '../components/DynamicScrollSection'
 import ScrollAnimatedHeading from '../components/ScrollAnimatedHeading'
 import ScrollAnimatedText from '../components/ScrollAnimatedText'
 import ScrollStackProcess from '../components/ScrollStackProcess'
-import vendorNetworkImage from '../assets/vendor-network.png'
+// import vendorNetworkImage from '../assets/vendor-network.png'
+const vendorNetworkImage = 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop' // Network/business connections image
 import backgroundImage from '../Download Gradient Red Background for free.jpeg'
 import './homepage-section-headings.css'
 
@@ -18,6 +21,144 @@ function HomePage() {
   const [showSilently, setShowSilently] = useState(false)
   const [formType, setFormType] = useState('architect') // 'vendor' or 'architect'
   const fullText = 'Powering Architecture'
+  
+  // Form states
+  const [architectForm, setArchitectForm] = useState({
+    firm_name: '',
+    from_name: '',
+    email: '',
+    phone: '',
+    project_type: '',
+    message: ''
+  })
+  
+  const [vendorForm, setVendorForm] = useState({
+    company_name: '',
+    contact_name: '',
+    email: '',
+    phone: '',
+    gst_number: '',
+    product_category: '',
+    description: ''
+  })
+  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' })
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY')
+  }, [])
+
+  // Form validation
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return re.test(email)
+  }
+
+  const validatePhone = (phone) => {
+    const re = /^[\d\s\-\+\(\)]+$/
+    return re.test(phone) && phone.length >= 10
+  }
+
+  // Handle architect form submission
+  const handleArchitectSubmit = async (e) => {
+    e.preventDefault()
+    
+    // Validation
+    if (!architectForm.firm_name || !architectForm.from_name || !architectForm.email || !architectForm.phone) {
+      setSubmitStatus({ type: 'error', message: 'Please fill in all required fields' })
+      return
+    }
+    
+    if (!validateEmail(architectForm.email)) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address' })
+      return
+    }
+    
+    if (!validatePhone(architectForm.phone)) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid phone number' })
+      return
+    }
+    
+    setIsSubmitting(true)
+    setSubmitStatus({ type: '', message: '' })
+    
+    try {
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ARCHITECT || 'YOUR_ARCHITECT_TEMPLATE_ID',
+        architectForm
+      )
+      
+      if (result.status === 200) {
+        setSubmitStatus({ type: 'success', message: 'Thank you! We will contact you within 24 hours.' })
+        setArchitectForm({
+          firm_name: '',
+          from_name: '',
+          email: '',
+          phone: '',
+          project_type: '',
+          message: ''
+        })
+      }
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setSubmitStatus({ type: 'error', message: 'Failed to send message. Please try again or contact us directly.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  // Handle vendor form submission
+  const handleVendorSubmit = async (e) => {
+    e.preventDefault()
+    
+    // Validation
+    if (!vendorForm.company_name || !vendorForm.contact_name || !vendorForm.email || !vendorForm.phone || !vendorForm.gst_number) {
+      setSubmitStatus({ type: 'error', message: 'Please fill in all required fields' })
+      return
+    }
+    
+    if (!validateEmail(vendorForm.email)) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address' })
+      return
+    }
+    
+    if (!validatePhone(vendorForm.phone)) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid phone number' })
+      return
+    }
+    
+    setIsSubmitting(true)
+    setSubmitStatus({ type: '', message: '' })
+    
+    try {
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_VENDOR || 'YOUR_VENDOR_TEMPLATE_ID',
+        vendorForm
+      )
+      
+      if (result.status === 200) {
+        setSubmitStatus({ type: 'success', message: 'Application submitted successfully! We will review and contact you soon.' })
+        setVendorForm({
+          company_name: '',
+          contact_name: '',
+          email: '',
+          phone: '',
+          gst_number: '',
+          product_category: '',
+          description: ''
+        })
+      }
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setSubmitStatus({ type: 'error', message: 'Failed to submit application. Please try again or contact us directly.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -250,7 +391,7 @@ function HomePage() {
         </div>
         <div className={`hero-cta-buttons ${heroRevealed ? 'buttons-revealed' : ''}`}>
           <a href="#about" className="hero-cta-button hero-cta-explore">About Us</a>
-          <a href="#services" className="hero-cta-button hero-cta-contact">ArchEase Box</a>
+          <Link to="/products" className="hero-cta-button hero-cta-contact">ArchEase Box</Link>
         </div>
       </section>
 
@@ -506,31 +647,109 @@ function HomePage() {
             
             {/* Conditional Form Rendering */}
             {formType === 'architect' ? (
-              <div className="contact-form">
+              <form className="contact-form" onSubmit={handleArchitectSubmit}>
                 <h4 className="form-subtitle">Architect Inquiry Form</h4>
-                <input type="text" placeholder="Architecture Firm Name" />
-                <input type="text" placeholder="Your Name" />
-                <input type="email" placeholder="Professional Email" />
-                <input type="tel" placeholder="Phone Number" />
-                <select className="form-select">
+                <input 
+                  type="text" 
+                  placeholder="Architecture Firm Name" 
+                  value={architectForm.firm_name}
+                  onChange={(e) => setArchitectForm({...architectForm, firm_name: e.target.value})}
+                  required
+                />
+                <input 
+                  type="text" 
+                  placeholder="Your Name" 
+                  value={architectForm.from_name}
+                  onChange={(e) => setArchitectForm({...architectForm, from_name: e.target.value})}
+                  required
+                />
+                <input 
+                  type="email" 
+                  placeholder="Professional Email" 
+                  value={architectForm.email}
+                  onChange={(e) => setArchitectForm({...architectForm, email: e.target.value})}
+                  required
+                />
+                <input 
+                  type="tel" 
+                  placeholder="Phone Number" 
+                  value={architectForm.phone}
+                  onChange={(e) => setArchitectForm({...architectForm, phone: e.target.value})}
+                  required
+                />
+                <select 
+                  className="form-select"
+                  value={architectForm.project_type}
+                  onChange={(e) => setArchitectForm({...architectForm, project_type: e.target.value})}
+                >
                   <option value="">Project Type</option>
                   <option value="residential">Residential</option>
                   <option value="commercial">Commercial</option>
                   <option value="industrial">Industrial</option>
                   <option value="mixed">Mixed Use</option>
                 </select>
-                <textarea placeholder="Tell us about your current sourcing challenges and project requirements" rows="4"></textarea>
-                <button className="submit-button">Request Partnership Discussion</button>
-              </div>
+                <textarea 
+                  placeholder="Tell us about your current sourcing challenges and project requirements" 
+                  rows="4"
+                  value={architectForm.message}
+                  onChange={(e) => setArchitectForm({...architectForm, message: e.target.value})}
+                ></textarea>
+                {submitStatus.message && (
+                  <div className={`submit-status ${submitStatus.type === 'success' ? 'status-success' : 'status-error'}`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+                <button 
+                  className="submit-button" 
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Request Partnership Discussion'}
+                </button>
+              </form>
             ) : (
-              <div className="contact-form">
+              <form className="contact-form" onSubmit={handleVendorSubmit}>
                 <h4 className="form-subtitle">Vendor Registration Form</h4>
-                <input type="text" placeholder="Company Name" />
-                <input type="text" placeholder="Contact Person Name" />
-                <input type="email" placeholder="Business Email" />
-                <input type="tel" placeholder="Phone Number" />
-                <input type="text" placeholder="GST Number" />
-                <select className="form-select">
+                <input 
+                  type="text" 
+                  placeholder="Company Name" 
+                  value={vendorForm.company_name}
+                  onChange={(e) => setVendorForm({...vendorForm, company_name: e.target.value})}
+                  required
+                />
+                <input 
+                  type="text" 
+                  placeholder="Contact Person Name" 
+                  value={vendorForm.contact_name}
+                  onChange={(e) => setVendorForm({...vendorForm, contact_name: e.target.value})}
+                  required
+                />
+                <input 
+                  type="email" 
+                  placeholder="Business Email" 
+                  value={vendorForm.email}
+                  onChange={(e) => setVendorForm({...vendorForm, email: e.target.value})}
+                  required
+                />
+                <input 
+                  type="tel" 
+                  placeholder="Phone Number" 
+                  value={vendorForm.phone}
+                  onChange={(e) => setVendorForm({...vendorForm, phone: e.target.value})}
+                  required
+                />
+                <input 
+                  type="text" 
+                  placeholder="GST Number" 
+                  value={vendorForm.gst_number}
+                  onChange={(e) => setVendorForm({...vendorForm, gst_number: e.target.value})}
+                  required
+                />
+                <select 
+                  className="form-select"
+                  value={vendorForm.product_category}
+                  onChange={(e) => setVendorForm({...vendorForm, product_category: e.target.value})}
+                >
                   <option value="">Product Category</option>
                   <option value="materials">Building Materials</option>
                   <option value="fixtures">Fixtures & Fittings</option>
@@ -538,9 +757,25 @@ function HomePage() {
                   <option value="technology">Technology & Automation</option>
                   <option value="other">Other</option>
                 </select>
-                <textarea placeholder="Describe your products/services and unique capabilities" rows="4"></textarea>
-                <button className="submit-button">Submit Vendor Application</button>
-              </div>
+                <textarea 
+                  placeholder="Describe your products/services and unique capabilities" 
+                  rows="4"
+                  value={vendorForm.description}
+                  onChange={(e) => setVendorForm({...vendorForm, description: e.target.value})}
+                ></textarea>
+                {submitStatus.message && (
+                  <div className={`submit-status ${submitStatus.type === 'success' ? 'status-success' : 'status-error'}`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+                <button 
+                  className="submit-button" 
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Vendor Application'}
+                </button>
+              </form>
             )}
           </div>
         </div>
