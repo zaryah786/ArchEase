@@ -39,6 +39,27 @@ import aquarium from '../product-images/Aquarium.jpeg'
 import glassFlooring from '../product-images/glassfloring.jpeg'
 import download from '../product-images/download.jpeg'
 
+// New niche product images
+import themeFurniture from '../product-images/theme_basedfurnitures.png'
+import bespoke from '../product-images/bespoke.png'
+import wallTexture from '../product-images/wall.png'
+import boards3d from '../product-images/3d boards.png'
+import wallCladding from '../product-images/wallclading.png'
+import experimentalArt from '../product-images/experimentalart.png'
+import marble from '../product-images/marble.jpeg'
+import modularBlocks from '../product-images/modularbuildingblocks.jpeg'
+import lighting from '../product-images/lighting.jpeg'
+import planters from '../product-images/planters.jpeg'
+import paintings from '../product-images/paintings.jpeg'
+import sculptures from '../product-images/sculptures.png'
+import screens from '../product-images/screen.jpeg'
+import customFireplace from '../product-images/Custom fireplace.jpeg'
+import mossPanel from '../product-images/Moss panel.jpeg'
+import reclaimedWood from '../product-images/reclaimedwood.jpeg'
+import rugs from '../product-images/rugs.jpeg'
+import leatherPanels from '../product-images/leatherpanels.jpeg'
+import beatenMetal from '../product-images/Beatenmetalceiling.jpeg'
+
 function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
@@ -48,6 +69,26 @@ function ProductsPage() {
     'Mosaic art': mosaicArt,
     'Timber house': timberHouse,
     'Terrazzo flooring': terrazzo,
+    'Theme based furniture': themeFurniture,
+    'Bespoke doors and surface textures': bespoke,
+    'Wall texture': wallTexture,
+    '3D boards': boards3d,
+    'Wall Cladding': wallCladding,
+    'Experiential Art': experimentalArt,
+    'Marble': marble,
+    'Modular building blocks': modularBlocks,
+    'Lighting': lighting,
+    'Planters': planters,
+    'Painting': paintings,
+    'Sculpture': sculptures,
+    'Screens & Jaalis': screens,
+    'Corten Steel elements': download,
+    'Custom fireplace': customFireplace,
+    'Moss panel': mossPanel,
+    'Reclaimed wood/vintage décor elements': reclaimedWood,
+    'Rugs': rugs,
+    'Leather panels': leatherPanels,
+    'Beaten Metal ceiling': beatenMetal,
     
     // Essential Products
     'Doors': doors,
@@ -93,7 +134,27 @@ function ProductsPage() {
       items: [
         'Mosaic art',
         'Timber house',
-        'Terrazzo flooring'
+        'Terrazzo flooring',
+        'Theme based furniture',
+        'Bespoke doors and surface textures',
+        'Wall texture',
+        '3D boards',
+        'Wall Cladding',
+        'Experiential Art',
+        'Marble',
+        'Modular building blocks',
+        'Lighting',
+        'Planters',
+        'Painting',
+        'Sculpture',
+        'Screens & Jaalis',
+        'Corten Steel elements',
+        'Custom fireplace',
+        'Moss panel',
+        'Reclaimed wood/vintage décor elements',
+        'Rugs',
+        'Leather panels',
+        'Beaten Metal ceiling'
       ]
     },
     essential: {
