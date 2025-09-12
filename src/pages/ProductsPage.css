@@ -102,9 +102,10 @@
 .hero-content {
   position: relative;
   text-align: center;
-  color: white;
+  color: white !important;
   z-index: 2;
-  animation: fadeInUp 1s ease;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 1 !important;
 }
 
 .hero-title {
@@ -112,12 +113,21 @@
   font-weight: 300;
   margin-bottom: 1rem;
   letter-spacing: 2px;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  opacity: 1 !important;
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
-  opacity: 0.9;
+  opacity: 0.9 !important;
   font-weight: 300;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
 }
 
 /* Category Cards Section */
@@ -194,6 +204,10 @@
   font-weight: 600;
   letter-spacing: 1px;
   margin: 0;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
 }
 
 .category-card-body {

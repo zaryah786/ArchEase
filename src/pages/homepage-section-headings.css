@@ -2,6 +2,8 @@
 .hero-text {
   text-align: center;
   color: white;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .hero-text h1 {
@@ -9,12 +11,16 @@
   font-weight: 700;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
+  text-align: center;
+  width: 100%;
 }
 
 .hero-text p {
   font-size: 1.5rem;
   font-weight: 300;
   opacity: 0.9;
+  text-align: center;
+  width: 100%;
 }
 
 /* Typing animation styles */
